@@ -1,0 +1,140 @@
+# 型を決めて宣言する事も可能(あまり使われることはない)
+# 型を決めても再代入で別の型の値を入れる事ができるので、プログラマが分かりやすいだけ
+num = 1
+num: int = 1
+print(type(num))  # -> <class 'int'>
+num = '1'
+print(type(num))  # -> <class 'str'>
+
+# print()には複数の値を渡す事ができる(半角スペースで区切られる)
+msg = 'hello'
+print(num, msg)
+
+# 引数:sep に値を渡すことで任意の文字列で区切ることも可能
+print(num, msg, sep=': ')
+
+# < 数値 >
+add = 1 + 2  # 足し算
+print('add:', add)
+
+sub = 5 - 1  # 引き算
+print('sub:', sub)
+
+multi = 3 * 3  # 掛け算
+print('multi:', multi)
+
+div_1 = 9 / 3  # 割り算(割り切れてもfloat型になる)
+print('div_1:', div_1)  # -> 3.0
+print('div_1:', type(div_1))  # -> <class 'float'>
+print('div_1:', int(div_1))  # -> 3
+print('div_1:', type(int(div_1)))  # -> <class 'int'>
+
+div_2 = 10 / 3  # 割り算(int型に変換した場合小数点切り捨て)
+print('div_2:', div_2)  # -> 3.3333333333333335
+print('div_2:', type(div_2))  # -> <class 'float'>
+print('div_2:', int(div_2))  # -> 3
+print('div_2:', type(int(div_2)))  # -> <class 'int'>
+
+div_3 = 22 // 5  # 割れる数だけ
+print('div_3:', div_3)  # -> 4
+
+div_4 = 22 % 5  # 余りを出す
+print('div_4:', div_4)  # -> 2
+
+power = 5 ** 3  # べき乗
+print('power:', power)
+
+r = round(3.1415, 2)  # 小数点桁数指定
+print('r:', r)
+
+import math
+
+sqrt = math.sqrt(5)  # 平方根
+print('sqrt:', sqrt)
+
+log = math.log(10)  # 対数
+print('log:', log)
+
+# モジュール等のヘルプドキュメントを表示
+help(math)
+
+# < 文字列 >
+print('good morning')
+print("hello")
+print('こんばんは')
+print("I'm so sleepy")  # ""の中では'は文字として扱われる
+print('"Hatomugi" is danger')  # ''の中では"は文字として扱われる
+print('It\'s too late')  # ''の中で'を使うなら\でエスケープ(""内"でも同じ)
+print('今日も\n\"Hatomugi\"は\n元気です。')  # \と特定の文字を合わせると特殊な働きをする
+print(r'C:\Users\hatomugi\picture')  # 頭にrを付けると''内は\も文字扱い(path等に便利)
+# '''文字列'''で複数行の文字列を書ける
+# 改行も含まれるので'''のしたくない場合は'''の後ろから書くか、\で次の行へ続くことを指示する
+print('''\
+明日も
+'Hatomugi'は
+元気でしょうね。\
+''')
+print("""
+来年も
+'Hatomugi'は
+元気さ。
+""")
+
+# 文字列と*で繰り返し
+hato3 = 'Hato' * 3
+
+# 文字列の結合
+print(hato3 + 'mugi' + 'さんこんばんは')
+
+# 一行が長くなる場合の対処
+# パターン1: \で次の行へつなぐ
+long_msg_1 = 'aaaaaaaaaaaaaaaaaaaaaaaaa'\
+             'bbbbbbbbbbbbbbbbbbbbbbbbb'
+print('パターン1:', long_msg_1)
+# パターン2: ()で括る
+long_msg_2 = ('ccccccccccccccccccccccccc'
+              'ddddddddddddddddddddddddd')
+print('パターン2:', long_msg_2)
+
+# < 文字列とスライス >
+index = 'abcdefghijklmn'
+# str型はindexを指定してアクセス可能
+print(index[5])  # -> f
+print(index[-1])  # -> n
+print(index[1:7])  # -> bcdefg
+print(index[:10])  # -> abcdefghij
+print(index[10:])  # -> klmn
+print(index[:])  # -> abcdefghijklmn
+
+print(len(index))  # list等の要素数を取得できる
+
+# < strのメソッド >
+s = 'this is "Hatomugi", do you have "Hatomugi"?'
+print(s)
+print('startswith:', s.startswith('this'))
+print('endswith:', s.endswith('?'))
+print('find:', s.find('Hatomugi'))
+print('rfind:', s.rfind('Hatomugi'))
+print('count:', s.count('Hatomugi'))
+print('capitalize: ', s.capitalize())
+print('title:', s.title())
+print('Upper:', s.upper())
+print('lower:', s.lower())
+print('replace:', s.replace('Hatomugi', 'Humster'))
+
+# format()
+s_tmp_1 = 'Today is {} {}.'
+s_1 = s_tmp_1.format('good', 'day')
+print(s_1)
+
+# 順番でformat
+s_tmp_2 = 'Today is {0} {2} {1}.'
+s_2 = s_tmp_2.format('shiny', 'chilly', 'but')
+print(s_2)
+s_3 = s_tmp_2.format('rainy', 'cloudy', 'or')
+print(s_3)
+
+# キーワードでformat()
+s_tmp_3 = '朝食は{breakf}を食べた。昼食は{lunch}を食べた。夕食は{dinner}を食べた。'
+s_4 = s_tmp_3.format(breakf='TKG', lunch='サンドイッチ', dinner='ひまわりの種')
+print(s_4)
